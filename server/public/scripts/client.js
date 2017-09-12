@@ -1,37 +1,71 @@
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['ngMap']);
 
-var locations = [{ lat: 44.993125, lng: -93.202571 }, { lat: 44.987305, lng: -93.202786 }, { lat: 44.987802, lng: -93.230248 }, { lat: 44.973732, lng: -93.236986 }, { lat: 44.982838, lng: -93.232165 }, { lat: 44.987873, lng: -93.215255 }];
 
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 13,
-    center: locations[4]
-  });
-  for (var i = 0; i < locations.length; i++) {
-    new google.maps.Marker({
-      position: locations[i],
-      map: map
+myApp.controller('MyController', function (NgMap) {
+
+  var self = this;
+  var bounds = new google.maps.LatLngBounds();
+  
+
+  self.locations = [[43.993125, -92.202571], [43.987305, -92.202786], [43.987802, -92.230248], [43.973732, -92.236986], [43.982838, -92.232165], [43.987873, -92.215255]];
+
+ 
+
+  self.drawMap = function () {
+
+    for (var i = 0; i < self.locations.length; i++) {
+      var latlng = new google.maps.LatLng(self.locations[i][0], self.locations[i][1]);
+      bounds.extend(latlng);
+    }
+
+    NgMap.getMap().then(function (map) {
+      console.log(map.getCenter());
+      console.log('markers', map.markers);
+      // console.log('shapes', map.shapes);
+      map.setCenter(bounds.getCenter());
+      map.fitBounds(bounds);
     });
   }
-}
+ 
+  
+  this.addLocation = function () {
+    var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+
+    function success(pos) {
+      var crd = pos.coords;
+
+      console.log('Your current position is:');
+      console.log(`Latitude : ${crd.latitude}`);
+      console.log(`Longitude: ${crd.longitude}`);
+      console.log(`More or less ${crd.accuracy} meters.`);
+
+      self.locations.push([crd.latitude, crd.longitude]);
+      self.drawMap();
 
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.watchPosition(showPosition, function () { showPosition() });
-  } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
+    };
+
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+
   }
 
-}
+  self.drawMap();
 
-function showPosition(position) {
-  locations.push({ lat: position.coords.latitude, lng: position.coords.longitude })
-  console.log("Latitude: ", position.coords.latitude, "Longitude: ", position.coords.longitude);
-  console.log(locations);
-  initMap();
-}
 
-// initMap();
-getLocation();
+  // 
+  // 
+  // 
 
+
+
+
+
+});

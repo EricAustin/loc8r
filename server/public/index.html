@@ -1,30 +1,26 @@
 <!DOCTYPE html>
-<html>
 
 <head>
-    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyDsmr25RBRsL2XW7UiLyQwD7Qts0TFTh9g",
-        authDomain: "friendtracker-dfbd1.firebaseapp.com",
-        databaseURL: "https://friendtracker-dfbd1.firebaseio.com",
-        projectId: "friendtracker-dfbd1",
-        storageBucket: "friendtracker-dfbd1.appspot.com",
-        messagingSenderId: "503907266851"
-      };
-      firebase.initializeApp(config);
-    </script>
-    <script src="scripts/vendors/angular.js"></script>    
-    <script src="scripts/client.js"></script>   
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL3zY6ES_LtYj-Emi3oh6u6CRA8MNlzAI&callback=initMap"></script>
-    <link rel="stylesheet" href="styles/style.css" />
-  
+  <title>Document</title>
+  <script src='scripts/vendors/angular.js'></script>
+  <script src='scripts/vendors/ng-map.js'></script>
+  <script src='http://maps.google.com/maps/api/js'></script>
+  <script src='scripts/client.js'></script>
+  <link rel='stylesheet' href="styles/style.css">
+
+
 </head>
-<body>
+
+<body ng-app="myApp" ng-controller="MyController as vm">
+
+  <map id="map">
+    <marker ng-repeat="pin in vm.locations" position={{pin}} title="test1"></marker>
+  </map>
+
+  <button ng-click="vm.addLocation()">Add Location</button>
   
-  <div id="map"></div>
- 
-</body>
+  </body>
+
+  
 
 </html>
