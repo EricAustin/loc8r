@@ -2,15 +2,16 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
-
 var mongoose = require('mongoose');
+var db = require('./modules/db.config.js');
+
+
 
 /** ---------- MIDDLEWARE ---------- **/
 app.use(express.static(path.join(__dirname, './public')));
 app.use(bodyParser.json()); // needed for angular requests
 
 /** ---------- EXPRESS ROUTES ---------- **/
-
 
 
 /** MONGOOSE CONNECTION **/
