@@ -5,11 +5,11 @@ myApp.controller('MyController', function (NgMap) {
 
   var self = this;
   var bounds = new google.maps.LatLngBounds();
-  
+
 
   self.locations = [[43.993125, -92.202571], [43.987305, -92.202786], [43.987802, -92.230248], [43.973732, -92.236986], [43.982838, -92.232165], [43.987873, -92.215255]];
 
- 
+
 
   self.drawMap = function () {
 
@@ -26,9 +26,9 @@ myApp.controller('MyController', function (NgMap) {
       map.fitBounds(bounds);
     });
   }
- 
-  
-  this.addLocation = function () {
+
+
+  self.addLocation = function () {
     var options = {
       enableHighAccuracy: true,
       timeout: 5000,
