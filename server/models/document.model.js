@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var UserSchema = new Schema({
-  username: {type: String, required: true, index: {unique: true}},
-  location: {type: Array}
+var pinSchema = new Schema({
+  username: {type: String, required: true},
+  location: {type: Array},
+  group: {type: String}
   
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Pin', pinSchema);

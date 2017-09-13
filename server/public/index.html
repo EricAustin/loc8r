@@ -2,27 +2,25 @@
 
 <head>
   <title>Document</title>
+  <script src='http://maps.google.com/maps/api/js?key=AIzaSyAubHilIMHeEgoG6mkiGDdL4x4j9IAKGQU'></script>  
   <script src='scripts/vendors/angular.js'></script>
+  <script src='scripts/vendors/angular-route.js'></script>  
   <script src='scripts/vendors/ng-map.js'></script>
-  <script src='http://maps.google.com/maps/api/js?key=AIzaSyAubHilIMHeEgoG6mkiGDdL4x4j9IAKGQU'></script>
   <script src='scripts/client.js'></script>
+  <script src='scripts/controllers/map.controller.js'></script>
+  <script src='scripts/services/map.service.js'></script>
   <link rel='stylesheet' href="styles/style.css">
 
   
 
 
 </head>
+<body ng-app="myApp">
 
-<body ng-app="myApp" ng-controller="MyController as vm">
-
-  <map id="map">
-    <marker ng-repeat="pin in vm.locations" position={{pin}} title="test1"></marker>
-  </map>
-
-  <button ng-click="vm.addLocation()">Add Location</button>
-  
-  </body>
-
+<ng-view></ng-view>
+</body>
   
 
 </html>
+
+  

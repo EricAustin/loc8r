@@ -5,6 +5,9 @@ var path = require('path');
 var mongoose = require('mongoose');
 var db = require('./modules/db.config.js');
 
+var pins = require('./routes/pins.js');
+
+
 
 
 /** ---------- MIDDLEWARE ---------- **/
@@ -12,7 +15,8 @@ app.use(express.static(path.join(__dirname, './public')));
 app.use(bodyParser.json()); // needed for angular requests
 
 /** ---------- EXPRESS ROUTES ---------- **/
-
+// app.use('/', index);
+app.use('/pins', pins);
 
 /** MONGOOSE CONNECTION **/
 // required

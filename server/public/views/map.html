@@ -1,0 +1,8 @@
+  <map id="map">
+    <marker ng-repeat="pin in mc.locations" position={{pin.location}} title="test1"></marker>
+  </map>
+
+  <button ng-click="mc.addLocation()">Add Location</button>
+  <button ng-click="mc.drawMap()">redraw map</button>
+  
+ 
