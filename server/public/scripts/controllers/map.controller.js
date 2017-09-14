@@ -6,6 +6,7 @@ myApp.controller('MapController', ['MapService', 'NgMap', function (MapService, 
   var self = this;
   var bounds = new google.maps.LatLngBounds();
   var newPin = {};
+  MapService.getLocations();
 
 
 
@@ -81,11 +82,6 @@ myApp.controller('MapController', ['MapService', 'NgMap', function (MapService, 
   }
 
 
-  MapService.getLocations();
-console.log('getLocations line85');
-
-  setInterval(function(){self.addLocation()}, 5000);
-  console.log('drawMap line 88');
   
 
 
