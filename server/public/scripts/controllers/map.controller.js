@@ -53,5 +53,7 @@ myApp.controller('MapController', ['MapService', function (MapService) {
 
   }
 
+  self.drawMap();
+
 
 }]);
