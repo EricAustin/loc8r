@@ -6,6 +6,8 @@ var pin = require('../models/document.model.js');
 router.get('/', function (req, res) {
     // find all of the people in the collection
     pin.find({}, function (err, data) {
+        
+        
         if (err) {
             console.log('find error: ', err);
             res.sendStatus(500);
@@ -18,6 +20,7 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
     console.log('new pin to store: ', req.body);
+    
 
     // use model/constructor to make a Mongoose Object
     var newPin = new pin(req.body);
@@ -30,11 +33,26 @@ router.post('/', function (req, res) {
 
             res.sendStatus(500);
         } else {
-            res.sendStatus(201);
+            res.send(data._id);
         }
 
     });
 });
+
+// router.get('/assignuser', function (req, res) {
+//     // find all of the people in the collection
+//     pin.find({}, function (err, data) {
+        
+        
+//         if (err) {
+//             console.log('find error: ', err);
+//             res.sendStatus(500);
+//         } else {
+//             console.log('found data: ', data);
+//             res.send(data);
+//         }
+//     });
+// });
 
 // router.put('/:id', function (req, res) {
 //     var personId = req.params.id;
