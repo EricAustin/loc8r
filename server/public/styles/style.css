@@ -6,6 +6,7 @@
 
 #button {
   height:10vh;
-  width: 50vh;
+  width: 30vw;
   margin: auto;
+  font-size: 2vw;
 }

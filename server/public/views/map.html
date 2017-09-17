@@ -1,9 +1,12 @@
 
 
 <button id="button" ng-click="mc.addLocation(username, group)">Another user joins group</button>
+<button id="button" ng-click="mc.updateLocation(username, group)">Update my pin</button>
+<button id="button" ng-click="mc.deletePin()">Delete my pin</button>
+
 <!-- <button ng-click="mc.updateLocation()">Update Location</button> -->
 <!-- <button ng-click="mc.drawMap()">redraw map</button> -->
 <!-- {{mc.locations.list[0].location}} -->
-<map id="map">
+<ng-map id="map" center="[ 39.810456, -98.555802]">
     <marker ng-repeat="pin in mc.locations.list" position={{pin.location}} title="test1"></marker>
-  </map>
+  </ng-map>

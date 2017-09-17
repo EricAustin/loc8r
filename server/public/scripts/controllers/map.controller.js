@@ -5,22 +5,23 @@ myApp.controller('MapController', ['MapService', function (MapService) {
   var self = this;
   var userID = MapService.newID
   var newPin = {};
+  var changePin = {};
+
   self.locations = MapService.locations;
 
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
+
+  function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  };
 
   self.drawMap = function () {
-    // console.log('redraw map button clicked');
-    // self.drawMap.when(MapService.getLocations).then(MapService.drawMap());
-    // MapService.getLocations(function() {MapService.drawMap()});
     MapService.getLocations();
-    // console.log('MapService.locations is', MapService.locations);
-    // console.log('self.locations is', self.locations);
   }
-
-
-
-
-
 
 
   self.addLocation = function (username, group) {
@@ -31,29 +32,38 @@ myApp.controller('MapController', ['MapService', function (MapService) {
       newPin.location = [pos.coords.latitude, pos.coords.longitude];
       newPin.group = group;
       self.sendObject(newPin);
+    };
 
-    };
-    function error(err) {
-      console.warn(`ERROR(${err.code}): ${err.message}`);
-    };
-    var options = {
-      enableHighAccuracy: true,
-      timeout: 7000,
-      maximumAge: 0
-    };
     navigator.geolocation.getCurrentPosition(success, error, options);
-
-
   }
 
+  self.updateLocation = function (username, group) {
+    console.log('updateLocation hit');
 
+    function success(pos) {
+      changePin.location = [pos.coords.latitude, pos.coords.longitude];
+      self.sendUpdate(changePin);
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  }
+
+  self.deletePin = function (username, group) {
+    console.log('deleteLocation hit');
+    MapService.deletePin();
+  }
 
   self.sendObject = function (newPin) {
+    console.log('sendObject hit');
+    
     MapService.addPin(newPin)
+  }
 
+  self.sendUpdate = function (changePin) {
+    console.log('sendUpdate hit');
+    
+    MapService.updatePin(changePin)
   }
 
   self.drawMap();
-
-
 }]);

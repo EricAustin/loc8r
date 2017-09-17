@@ -38,57 +38,44 @@ router.post('/', function (req, res) {
 
     });
 });
+router.put('/', function (req, res) {
+    var changePin = new pin;
+    changePin.ID = req.body.ID;
+    changePin.location = req.body.location;
+    console.log('===================================================================================================');
+    console.log('pins.js line 47 changePin.ID is:', changePin.ID);
+    console.log('pins.js line 47 changePin.location is:', changePin.location);
+    console.log(changePin);
+    
+    pin.findByIdAndUpdate(
+        { _id: changePin.ID },
+        { $set: { location: changePin.location }},
+        function (err, data) {
+        if (err) {
+            console.log('save error: ', err);
 
-// router.get('/assignuser', function (req, res) {
-//     // find all of the people in the collection
-//     pin.find({}, function (err, data) {
-        
-        
-//         if (err) {
-//             console.log('find error: ', err);
-//             res.sendStatus(500);
-//         } else {
-//             console.log('found data: ', data);
-//             res.send(data);
-//         }
-//     });
-// });
+            res.sendStatus(500);
+        } else {
+            res.sendStatus(200);
+        }
 
-// router.put('/:id', function (req, res) {
-//     var personId = req.params.id;
+    });
+});
 
-//     console.log('new location:', req.body);
-//     Person.findByIdAndUpdate(
-//         { _id: personId },
-//         { $set: { name: req.body.name, location: req.body.location, dateOfBirth: req.body.dateOfBirth, internetPts: req.body.internetPts }
-//         // { $set: {  }
-//         },
-//         function (err, data) {
-//             if (err) {
-//                 console.log('update error: ', err);
+router.delete('/:id', function (req, res) {
+    pin.findByIdAndRemove(
+        { _id: req.params.id },
+        function (err, data) {
+            if (err) {
+                console.log('delete error: ', err);
 
-//                 res.sendStatus(500);
-//             } else {
-//                 res.sendStatus(200);
-//             }
-//         }
-//     )
-// });
-
-// router.delete('/:id', function (req, res) {
-//     Person.findByIdAndRemove(
-//         { _id: req.params.id },
-//         function (err, data) {
-//             if (err) {
-//                 console.log('delete error: ', err);
-
-//                 res.sendStatus(500);
-//             } else {
-//                 res.sendStatus(200);
-//             }
-//         }
-//     );
-// });
+                res.sendStatus(500);
+            } else {
+                res.sendStatus(200);
+            }
+        }
+    );
+});
 
 
 module.exports = router;
