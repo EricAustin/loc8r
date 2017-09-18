@@ -39,7 +39,6 @@ myApp.service('MapService', ['$http', 'NgMap', function ($http, NgMap) {
 
   self.deletePin = function () {
     console.log('service to delete id: ', ID);
-
     $http.delete('/pins/' + ID).then(function (response) {
       console.log('service delete response:', response);
       self.getLocations();

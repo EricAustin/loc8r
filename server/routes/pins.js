@@ -42,10 +42,8 @@ router.put('/', function (req, res) {
     var changePin = new pin;
     changePin.ID = req.body.ID;
     changePin.location = req.body.location;
-    console.log('===================================================================================================');
     console.log('pins.js line 47 changePin.ID is:', changePin.ID);
     console.log('pins.js line 47 changePin.location is:', changePin.location);
-    console.log(changePin);
     
     pin.findByIdAndUpdate(
         { _id: changePin.ID },
@@ -63,6 +61,8 @@ router.put('/', function (req, res) {
 });
 
 router.delete('/:id', function (req, res) {
+    console.log('deleting pin with id:', req.params.id);
+    
     pin.findByIdAndRemove(
         { _id: req.params.id },
         function (err, data) {
