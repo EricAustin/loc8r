@@ -4,6 +4,7 @@ myApp.service('MapService', ['$http', 'NgMap', function ($http, NgMap) {
   var self = this;
   var ID;
   var bounds = new google.maps.LatLngBounds();
+  var newPin = {};
 
 
 
@@ -11,7 +12,9 @@ myApp.service('MapService', ['$http', 'NgMap', function ($http, NgMap) {
   self.locations = { list: [] };
 
   self.getLocations = function () {
-    $http.get('/pins').then(function (response) {
+    $http.get('/pins/'+self.newPin.group).then(function (response) {
+      console.log('self.newPin.group is', self.newPin.group);
+      
       self.locations.list = response.data;
       // console.log('get response: ', self.locations);
       self.drawMap();
@@ -22,6 +25,8 @@ myApp.service('MapService', ['$http', 'NgMap', function ($http, NgMap) {
   self.addPin = function (newPin) {
     console.log('going to send this object to the server: ', newPin);
     $http.post('/pins', newPin).then(function (response) {
+      self.newPin = newPin
+      
       console.log('service post response.data: ', response.data);
       ID = response.data
       // console.log('self.newID is', self.newID);

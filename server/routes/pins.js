@@ -3,9 +3,12 @@ var router = express.Router();
 // bring in our Mongoose model
 var pin = require('../models/document.model.js');
 
-router.get('/', function (req, res) {
-    // find all of the people in the collection
-    pin.find({}, function (err, data) {
+// router.get('/:group', function (req, res) {
+    router.get('/:group', function (req, res) {
+        // find all of the people in the collection
+    console.log('finding pins with group:', req.params.group);
+    
+    pin.find({'group': 'Group'}, function (err, data) {
         
         
         if (err) {

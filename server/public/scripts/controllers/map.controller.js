@@ -18,7 +18,7 @@ myApp.controller('MapController', ['MapService', 'NgMap', '$location', function 
   });
 
   self.pInfowindow = self.locations.list[0]
-  
+
 
   self.showDetails = function (e, pin) {
     // console.log('self.locations.list', self.locations.list);
@@ -48,15 +48,20 @@ myApp.controller('MapController', ['MapService', 'NgMap', '$location', function 
     console.log('addLocation hit');
 
     function success(pos) {
-      if (username) {
-        newPin.username = username;
-      } else { newPin.username = "blank username" };
+      // if (username) {
+      newPin.username = username;
+      // } else { newPin.username = "blank username" };
       newPin.location = [pos.coords.latitude, pos.coords.longitude];
-      if (group) {
-        newPin.group = group;
-      } else {
-        newPin.group = "blank group"
-      };
+      // if (group) {
+      newPin.group = group;
+      // } else {
+      //   newPin.group = "blank group"
+      // };
+      newPin.speed = pos.coords.speed;
+      // console.log('pos is ', pos);
+      // console.log('newPin is ', newPin);
+      
+
 
       self.sendObject(newPin);
     };
