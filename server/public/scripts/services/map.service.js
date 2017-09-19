@@ -6,6 +6,8 @@ myApp.service('MapService', ['$http', 'NgMap', function ($http, NgMap) {
   var bounds = new google.maps.LatLngBounds();
 
 
+
+
   self.locations = { list: [] };
 
   self.getLocations = function () {
