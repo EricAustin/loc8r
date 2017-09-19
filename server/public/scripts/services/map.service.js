@@ -12,9 +12,9 @@ myApp.service('MapService', ['$http', 'NgMap', function ($http, NgMap) {
   self.locations = { list: [] };
 
   self.getLocations = function () {
-    $http.get('/pins/'+self.newPin.group).then(function (response) {
+    $http.get('/pins/' + self.newPin.group).then(function (response) {
       console.log('self.newPin.group is', self.newPin.group);
-      
+
       self.locations.list = response.data;
       // console.log('get response: ', self.locations);
       self.drawMap();
@@ -26,7 +26,7 @@ myApp.service('MapService', ['$http', 'NgMap', function ($http, NgMap) {
     console.log('going to send this object to the server: ', newPin);
     $http.post('/pins', newPin).then(function (response) {
       self.newPin = newPin
-      
+
       console.log('service post response.data: ', response.data);
       ID = response.data
       // console.log('self.newID is', self.newID);
@@ -56,18 +56,18 @@ myApp.service('MapService', ['$http', 'NgMap', function ($http, NgMap) {
   self.drawMap = function () {
     // console.log('MapService.locations is', self.locations);
     // console.log('locations is ', self.locations);
-    console.log('self.locations is ', self.locations);
-    console.log('self.locations.list is ', self.locations.list);
-    console.log('self.locations.list.length is ', self.locations.list.length);
+    // console.log('self.locations is ', self.locations);
+    // console.log('self.locations.list is ', self.locations.list);
+    // console.log('self.locations.list.length is ', self.locations.list.length);
 
     if (self.locations.list.length == 0) {
-      console.log('if hit');
+      // console.log('if hit');
       NgMap.getMap().then(function (map) {
         map.setCenter({ lat: 47.115567, lng: -101.299663 });
         map.setZoom(4);
       })
     } else {
-      console.log('else hit');
+      // console.log('else hit');
       for (var i = 0; i < self.locations.list.length; i++) {
         var latlng = new google.maps.LatLng(self.locations.list[i].location[0], self.locations.list[i].location[1]);
         bounds.extend(latlng);

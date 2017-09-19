@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngMap', 'ngRoute']);
+var myApp = angular.module('myApp', ['ngMap', 'ngRoute', 'ngMaterial']);
 
 
 

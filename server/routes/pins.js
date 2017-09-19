@@ -8,7 +8,7 @@ var pin = require('../models/document.model.js');
         // find all of the people in the collection
     console.log('finding pins with group:', req.params.group);
     
-    pin.find({'group': 'Group'}, function (err, data) {
+    pin.find({'group': req.params.group}, function (err, data) {
         
         
         if (err) {
