@@ -1,5 +1,5 @@
 
-myApp.controller('MapController', ['MapService', 'NgMap', function (MapService, NgMap) {
+myApp.controller('MapController', ['MapService', 'NgMap', '$location', function (MapService, NgMap, $location) {
   // console.log('Map Controller loaded.');
 
   var self = this;
@@ -62,6 +62,7 @@ myApp.controller('MapController', ['MapService', 'NgMap', function (MapService, 
     };
 
     navigator.geolocation.getCurrentPosition(success, error, options);
+    $location.path("map");
   }
 
   self.updateLocation = function (username, group) {
@@ -78,6 +79,7 @@ myApp.controller('MapController', ['MapService', 'NgMap', function (MapService, 
   self.deletePin = function (username, group) {
     console.log('deleteLocation hit');
     MapService.deletePin();
+    $location.path("");
   }
 
   self.sendObject = function (newPin) {
