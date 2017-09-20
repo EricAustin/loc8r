@@ -11,8 +11,12 @@
   <info-window id="infoWindow">
     <div ng-non-bindable=""><br>
      name: {{mc.pInfowindow.username}}<br>
-     group: {{mc.pInfowindow.group}}<br>
-     speed: {{mc.pInfowindow.speed}}
+     <!-- group: {{mc.pInfowindow.group}}<br> -->
+     speed: {{mc.pInfowindow.speed}}<br>
+     <!-- timestamp: {{mc.pInfowindow.timestamp}}<br>
+     now: {{mc.pInfowindow.now}}<br>
+     diff: {{mc.pInfowindow.diff}}<br> -->
+     pin age: {{mc.pInfowindow.minutes}}:{{mc.pInfowindow.seconds}}
     </div>
   </info-window>
 </ng-map>

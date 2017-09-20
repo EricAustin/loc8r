@@ -5,8 +5,8 @@ var pinSchema = new Schema({
   username: {type: String},
   location: {type: Array},
   speed: {type: Number},
-  group: {type: String}
-  
+  group: {type: String},
+  timestamp: {}  
 });
 
 module.exports = mongoose.model('Pin', pinSchema);
