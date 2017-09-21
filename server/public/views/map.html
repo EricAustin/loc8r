@@ -5,11 +5,12 @@
 <!-- <button ng-click="mc.updateLocation()">Update Location</button> -->
 <!-- <button ng-click="mc.drawMap()">redraw map</button> -->
 <!-- {{mc.locations.list[0].location}} -->
+<div id='mapPage'>
 <ng-map id="map" center="[ 39.810456, -98.555802]">
   <marker ng-repeat="pin in mc.locations.list" position={{pin.location}} title="test1" on-click="mc.showDetails(pin)"></marker>
 
   <info-window id="infoWindow">
-    <div ng-non-bindable=""><br>
+    <div ng-non-bindable="">
      name: {{mc.pInfowindow.username}}<br>
      <!-- group: {{mc.pInfowindow.group}}<br> -->
      speed: {{mc.pInfowindow.speed | number: 0}} mph<br>
@@ -20,5 +21,8 @@
     </div>
   </info-window>
 </ng-map>
-<md-button class="md-raised" ng-click="mc.deletePin()">Leave group</md-button>
+<md-button id="leaveButton" class="md-raised" ng-click="mc.deletePin()">Leave group</md-button>
 
+
+
+</div>

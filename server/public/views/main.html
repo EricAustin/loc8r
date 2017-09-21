@@ -1,21 +1,28 @@
-<h1>loc8r</h1>
-
 <!-- <input class="textInput" type="text" ng-model="group" md-floating-label="group">
 <input class="textInput" type="text" ng-model="username" placeholder="username"> -->
 
-<div>
+<div class="hero-image">
 
-<div layout-gt-sm="row">
-   <md-input-container class="md-block" flex-gt-sm>
-      <label>Group</label>
-      <input ng-model="group">
-   </md-input-container>
+</div>
 
-   <md-input-container class="md-block" flex-gt-sm>
-      <label>Username</label>
-      <input ng-model="username">
-   </md-input-container>
+<div class="content">
+   <div class="hero-text">
+      <h1>loc8r</h1>
+   </div>
 
-   <md-button class="md-raised" ng-click="mc.addLocation(username, group)">Join group</md-button>
-   
+   <div class="loginDiv">
+      <md-input-container class="md-block" flex-gt-sm>
+         <label>Group</label>
+         <input ng-model="group">
+      </md-input-container>
+
+      <md-input-container class="md-block" flex-gt-sm>
+         <label>Username</label>
+         <input ng-model="username">
+      </md-input-container>
+
+      <md-button class="md-raised" ng-click="mc.addLocation(username, group)">Join group</md-button>
+
+   </div>
+
 </div>

@@ -1,33 +1,82 @@
+body,
+html {
+    height: 100vh;
+    font-family: 'Permanent Marker', cursive;
+    background: rgba(25, 114, 120, .5);
+    ;
+}
+
 #map {
-  height: 80vh;
-  width: 95vw;
-  margin: auto;
-}
-/* 
-.textInput {
-  width: 95vw;
-  height: 15vh;
-  margin: auto;
-  margin-bottom: 1vh;
-  font-size: 10vh;
-  border: 3px solid black;
-  border-radius: 3vw;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
 }
 
-.button {
-  width: 95vw;
-  height: 15vh;
-  margin: auto;
-  margin-top: 1vh;
-  margin-bottom: 1vh;
-  font-size: 10vh;
-  border: 3px solid black;
-  border-radius: 3vw;
+
+/* The hero image */
+
+.hero-image {
+    background-image: url("splash.png");
+    background-size: cover;
+    display: block;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    display: block;
+    filter: grayscale(90%) brightness(105%) blur(1px);
 }
 
-h1 {
-  text-align: center;
-  font-size: 15vh;
+.content {
+    background: rgba(25, 114, 120, 1);
+    border-radius: 3px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    top: 10px;
+    left: 0;
+    position: fixed;
+    margin-left: 20px;
+    margin-right: 20px;
+    right: 0;
+    z-index: 2;
+    padding: 0 10px;
+}
 
-} */
 
+/* Place text in the middle of the image */
+
+.hero-text {
+    text-align: center;
+    font-size: 200%;
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+}
+
+.loginDiv {
+    color: black;
+    position: absolute;
+    width: 85vw;
+    /* height: 50vh; */
+    margin-top: 50vh;
+    background: rgba(25, 114, 120, .5);
+    ;
+    border-radius: 3px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 1vh
+}
+
+.md-raised {
+    font-size: 110%
+}
+
+#leaveButton {
+    position: absolute;
+    left: 33%;
+    bottom: 1%;
+    z-index: 1;
+}
