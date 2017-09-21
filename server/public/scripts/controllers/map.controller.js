@@ -8,6 +8,11 @@ myApp.controller('MapController', ['MapService', 'NgMap', '$location', function 
   var changePin = {};
   var timer;
   var refreshrate = 10000;
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  };
 
   function setTimer() {
     timer = setTimeout(function () {
@@ -18,6 +23,9 @@ myApp.controller('MapController', ['MapService', 'NgMap', '$location', function 
     })
   }
 
+  function error(err) {
+    // console.warn(`ERROR(${err.code}): ${err.message}`);
+  };
 
   self.locations = MapService.locations;
 
@@ -44,46 +52,18 @@ myApp.controller('MapController', ['MapService', 'NgMap', '$location', function 
 
     self.pInfowindow.ms = self.pInfowindow.diff % 1000;
     self.pInfowindow.diff = (self.pInfowindow.diff - self.pInfowindow.ms) / 1000;
-    self.pInfowindow.seconds = (self.pInfowindow.diff % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})
+    self.pInfowindow.seconds = (self.pInfowindow.diff % 60).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })
     self.pInfowindow.diff = (self.pInfowindow.diff - self.pInfowindow.seconds) / 60;
     self.pInfowindow.minutes = self.pInfowindow.diff % 60;
     self.pInfowindow.hours = (self.pInfowindow.diff - self.pInfowindow.minutes) / 60;
-    
-
-    // var ms = s % 1000;
-    // s = (s - ms) / 1000;
-    // var secs = s % 60;
-    // s = (s - secs) / 60;
-    // var mins = s % 60;
-    // var hrs = (s - mins) / 60;
-    
-
-    // console.log(self.pInfowindow.now);
-    
-
-
-
-
-
 
     self.map.showInfoWindow('infoWindow', this);
   }
 
 
+ 
 
 
-
-
-
-  var options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
-
-  function error(err) {
-    // console.warn(`ERROR(${err.code}): ${err.message}`);
-  };
 
   self.drawMap = function () {
     MapService.getLocations();
@@ -119,30 +99,27 @@ myApp.controller('MapController', ['MapService', 'NgMap', '$location', function 
         newPin.timestamp = then.getTime();
         self.sendObject(newPin);
         setTimer(function () { console.log('add timer started') });
-
       }
-
-
     };
-
     navigator.geolocation.getCurrentPosition(success, error, options);
     $location.path("map");
-
   }
 
   self.updateLocation = function (username, group) {
     // console.log('updateLocation hit');
-
-
     function success(pos) {
       changePin.location = [pos.coords.latitude, pos.coords.longitude];
+      var then = new Date();
+      console.log('then is', then);
+      
+      changePin.timestamp = then.getTime();
+      console.log('changePin.timestamp is ', changePin.timestamp);
+      
+      console.log('changePin is', changePin);
       self.sendUpdate(changePin);
     };
-
     navigator.geolocation.getCurrentPosition(success, error, options);
-
     setTimer(function () { console.log('update timer started') });
-
   }
 
   self.deletePin = function (username, group) {
@@ -154,14 +131,11 @@ myApp.controller('MapController', ['MapService', 'NgMap', '$location', function 
 
   self.sendObject = function (newPin) {
     // console.log('sendObject hit');
-
     MapService.addPin(newPin)
-
   }
 
   self.sendUpdate = function (changePin) {
     // console.log('sendUpdate hit');
-
     MapService.updatePin(changePin)
   }
 

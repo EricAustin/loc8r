@@ -39,6 +39,8 @@ myApp.service('MapService', ['$http', 'NgMap', function ($http, NgMap) {
     changePin.ID = ID;
     console.log('updating pin with ID:', changePin.ID);
     console.log('new location is:', changePin.location);
+    console.log('new timestamp is', changePin.timestamp);
+    
     $http.put('/pins', changePin).then(function () {
       self.getLocations();
     })

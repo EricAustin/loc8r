@@ -6,7 +6,7 @@ var pinSchema = new Schema({
   location: {type: Array},
   speed: {type: Number},
   group: {type: String},
-  timestamp: {}  
+  timestamp: {type: Number}  
 });
 
 module.exports = mongoose.model('Pin', pinSchema);

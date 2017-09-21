@@ -4,13 +4,13 @@ var router = express.Router();
 var pin = require('../models/document.model.js');
 
 // router.get('/:group', function (req, res) {
-    router.get('/:group', function (req, res) {
-        // find all of the people in the collection
+router.get('/:group', function (req, res) {
+    // find all of the people in the collection
     console.log('finding pins with group:', req.params.group);
-    
-    pin.find({'group': req.params.group}, function (err, data) {
-        
-        
+
+    pin.find({ 'group': req.params.group }, function (err, data) {
+
+
         if (err) {
             console.log('find error: ', err);
             res.sendStatus(500);
@@ -23,7 +23,7 @@ var pin = require('../models/document.model.js');
 
 router.post('/', function (req, res) {
     console.log('new pin to store: ', req.body);
-    
+
 
     // use model/constructor to make a Mongoose Object
     var newPin = new pin(req.body);
@@ -45,27 +45,32 @@ router.put('/', function (req, res) {
     var changePin = new pin;
     changePin.ID = req.body.ID;
     changePin.location = req.body.location;
+    changePin.timestamp = req.body.timestamp;
     console.log('pins.js line 47 changePin.ID is:', changePin.ID);
     console.log('pins.js line 47 changePin.location is:', changePin.location);
+    console.log('pins.js line 47 changePIn.timestamp is:', changePin.timestamp);
     
+
     pin.findByIdAndUpdate(
         { _id: changePin.ID },
-        { $set: { location: changePin.location }},
+        {
+            $set: { location: changePin.location, timestamp: changePin.timestamp }
+        },
         function (err, data) {
-        if (err) {
-            console.log('save error: ', err);
+            if (err) {
+                console.log('save error: ', err);
 
-            res.sendStatus(500);
-        } else {
-            res.sendStatus(200);
-        }
+                res.sendStatus(500);
+            } else {
+                res.sendStatus(200);
+            }
 
-    });
+        });
 });
 
 router.delete('/:id', function (req, res) {
     console.log('deleting pin with id:', req.params.id);
-    
+
     pin.findByIdAndRemove(
         { _id: req.params.id },
         function (err, data) {
