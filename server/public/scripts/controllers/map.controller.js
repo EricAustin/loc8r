@@ -88,7 +88,7 @@ myApp.controller('MapController', ['MapService', 'NgMap', '$location', function 
         // } else { newPin.username = "blank username" };
         newPin.location = [pos.coords.latitude, pos.coords.longitude];
         // if (group) {
-        newPin.group = group;
+        newPin.group = group.toUpperCase();
         // } else {
         //   newPin.group = "blank group"
         // };
