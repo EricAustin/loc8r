@@ -1,16 +1,14 @@
 
 myApp.controller('MapController', ['MapService', 'NgMap', '$location', function (MapService, NgMap, $location) {
-  console.log('enter controller');
-  // console.log('Map Controller loaded.');
 
-  var launched;
+  // var launched;
   var timer
   var test = 0
   var self = this;
   var userID = MapService.newID
   var newPin = {};
   var changePin = {};
-  var refreshrate = 10000;
+  var refreshrate = 15000;
   var options = {
     enableHighAccuracy: true,
     timeout: 7000,
@@ -40,7 +38,7 @@ myApp.controller('MapController', ['MapService', 'NgMap', '$location', function 
 
   function error(err) {
     console.log('getCurrentPosition error hit');
-    console.warn(`ERROR(${err.code}): ${err.message}`);
+    // console.warn(`ERROR(${err.code}): ${err.message}`);
     self.getLocation();
   }; // end error function used by navigator.geolocation.getCurrentPosition
 
@@ -89,14 +87,24 @@ myApp.controller('MapController', ['MapService', 'NgMap', '$location', function 
 
   self.addLocation = function (username, group) {
     console.log('addLocation hit');
-    newPin.username = username;
-    newPin.group = group.toUpperCase();
-    var timestamp = new Date();
-    newPin.timestamp = timestamp.getTime();
-    MapService.addPin(newPin)
-    // setTimer(function () { console.log('addLocation timer started') });
-    $location.path("map");
-    setTimer();
+    
+    if (newPin.location == undefined) {
+      console.log('newPin.location', newPin.location);
+      setTimeout(function () {
+        self.addLocation(username, group);
+      }, 1000);
+    } else {
+      console.log('addLocation else hit');
+      
+      newPin.username = username;
+      newPin.group = group.toUpperCase();
+      var timestamp = new Date();
+      newPin.timestamp = timestamp.getTime();
+      MapService.addPin(newPin)
+      // setTimer(function () { console.log('addLocation timer started') });
+      $location.path("map");
+      setTimer();
+    }
   } // end self.addLocation
 
   self.updateLocation = function (username, group) {
@@ -116,17 +124,7 @@ myApp.controller('MapController', ['MapService', 'NgMap', '$location', function 
     $location.path("");
   } // end self.deletePin
 
-  // self.launchApp = function () {
-    
-  //   if (launched !== 1) {
-  //     console.log('launch', launched);
-  //     self.getLocation();
-  //     launched = 1
-  //   };
-  //   launched++;
-  // }
 
-  // self.launchApp();
 
   self.getLocation();
 }]);

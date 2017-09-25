@@ -8,7 +8,7 @@ myApp.service('MapService', ['$http', 'NgMap', function ($http, NgMap) {
   self.locations = { list: [] };
 
   self.getLocations = function () {
-    console.log('MapService.getLocations hit');
+    // console.log('MapService.getLocations hit');
     $http.get('/pins/' + self.newPin.group).then(function (response) {
       // console.log('self.newPin.group is', self.newPin.group);
       self.locations.list = response.data;
@@ -18,7 +18,7 @@ myApp.service('MapService', ['$http', 'NgMap', function ($http, NgMap) {
   }; // end self.getLocations
 
   self.addPin = function (newPin) {
-    console.log('MapService.addPin hit', newPin);
+    // console.log('MapService.addPin hit', newPin);
     $http.post('/pins', newPin).then(function (response) {
       self.newPin = newPin
       // console.log('service post response.data: ', response.data);
@@ -30,7 +30,7 @@ myApp.service('MapService', ['$http', 'NgMap', function ($http, NgMap) {
   }; // end self.addPin
 
   self.updatePin = function (changePin) {
-    console.log('MapService.updatePin hit', changePin);
+    // console.log('MapService.updatePin hit', changePin);
     
     changePin.ID = ID;
     // console.log('updating pin with ID:', changePin.ID);
@@ -51,7 +51,7 @@ myApp.service('MapService', ['$http', 'NgMap', function ($http, NgMap) {
 
 
   self.drawMap = function () {
-    console.log('MapService.drawMap hit');
+    // console.log('MapService.drawMap hit');
     
     // console.log('MapService.locations is', self.locations);
     // console.log('locations is ', self.locations);
