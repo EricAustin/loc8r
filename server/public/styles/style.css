@@ -48,10 +48,10 @@ html {
 /* Place text in the middle of the image */
 
 .hero-text {
-    text-align: center;
+    /* text-align: center; */
     font-size: 200%;
     position: absolute;
-    top: 200px;
+    top: 30vh;
     left: 50%;
     transform: translate(-50%, -50%);
     color: black;
@@ -59,12 +59,16 @@ html {
 
 .loginDiv {
     color: black;
-    position: absolute;
-    width: 85vw;
-    height: 55vw;
-    margin-top: 50vh;
-    background: rgba(25, 114, 120, .85);
-    ;
+    /* position: absolute; */
+    /* width: 85vw; */
+    /* height: 55vw; */
+    /* margin-top: 50vh; */
+    position: fixed;
+    left: 5vw;
+    right: 5vw;
+    top: 60vh;
+    bottom: 10vh;
+    background: rgba(25, 114, 120, .9);
     border-radius: 3px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
     border-radius: 2vh
@@ -77,13 +81,15 @@ html {
 
 #leaveButton {
     position: absolute;
-    left: 33%;
-    bottom: 1%;
+    left: 30vw;
+    right: 30vw;
+    bottom: 0vh;
     z-index: 1;
 }
 
 #joinButton {
     position: absolute;
-    right: 10%;
+    right: 10vw;
+    bottom: 2vh;
     z-index: 1;
 }
