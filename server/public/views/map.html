@@ -1,12 +1,5 @@
-<!-- <button id="button" ng-click="mc.addLocation(username, group)">Another user joins group</button> -->
-
-<!-- <button id="button" ng-click="mc.updateLocation(username, group)">Update my pin</button> -->
-
-<!-- <button ng-click="mc.updateLocation()">Update Location</button> -->
-<!-- <button ng-click="mc.drawMap()">redraw map</button> -->
-<!-- {{mc.locations.list[0].location}} -->
 <div id='mapPage'>
-<ng-map id="map" center="[ 39.810456, -98.555802]">
+<ng-map id="map">
   <marker ng-repeat="pin in mc.locations.list" position={{pin.location}} title="test1" on-click="mc.showDetails(pin)"></marker>
 
   <info-window id="infoWindow">
@@ -14,9 +7,6 @@
      name: {{mc.pInfowindow.username}}<br>
      <!-- group: {{mc.pInfowindow.group}}<br> -->
      speed: {{mc.pInfowindow.speed | number: 0}} mph<br>
-     <!-- timestamp: {{mc.pInfowindow.timestamp}}<br>
-     now: {{mc.pInfowindow.now}}<br>
-     diff: {{mc.pInfowindow.diff}}<br> -->
      last updated: {{mc.pInfowindow.minutes}}:{{mc.pInfowindow.seconds}}
     </div>
   </info-window>
