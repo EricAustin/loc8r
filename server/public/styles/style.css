@@ -3,7 +3,6 @@ html {
     height: 100vh;
     font-family: 'Permanent Marker', cursive;
     background: rgba(25, 114, 120, .5);
-    overflow: hidden;
 }
 
 #map {
