@@ -50,28 +50,27 @@ html {
 .hero-text {
     /* text-align: center; */
     font-size: 200%;
-    position: absolute;
-    top: 30vh;
+    position: fixed;
+    top: 25vh;
     left: 50%;
     transform: translate(-50%, -50%);
     color: black;
 }
 
 .loginDiv {
-    color: black;
-    /* position: absolute; */
     /* width: 85vw; */
     /* height: 55vw; */
     /* margin-top: 50vh; */
     position: fixed;
     left: 5vw;
     right: 5vw;
-    top: 60vh;
+    top: 55vh;
     bottom: 10vh;
     background: rgba(25, 114, 120, .9);
     border-radius: 3px;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
-    border-radius: 2vh
+    border-radius: 2vh;
+    z-index: 1;
 }
 
 .md-raised {
@@ -80,7 +79,7 @@ html {
 }
 
 #leaveButton {
-    position: absolute;
+    position: fixed;
     left: 30vw;
     right: 30vw;
     bottom: 0vh;
@@ -88,8 +87,8 @@ html {
 }
 
 #joinButton {
-    position: absolute;
-    right: 10vw;
-    bottom: 2vh;
+    position: fixed;
+    right: 7vw;
+    bottom: 13vh;
     z-index: 1;
 }
