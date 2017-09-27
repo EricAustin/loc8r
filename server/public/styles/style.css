@@ -11,6 +11,14 @@ html {
     z-index: 2;
 }
 
+md-input-container label {
+    color: black;
+}
+
+md-input-container.md-input-focused label {
+    color: black;
+}
+
 
 /* The hero image */
 
