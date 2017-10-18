@@ -7,6 +7,8 @@ var db = require('./modules/db.config.js');
 
 var pins = require('./routes/pins.js');
 
+require('newrelic');
+
 
 
 
